@@ -1,3 +1,7 @@
+// run this command in cmd and tarminal 
+composer require phpmailer/phpmailer
+// file and folder create automatic with name of vendor
+
 <?php
 //Load Composer's autoloader
 require './vendor/autoload.php';
@@ -5,17 +9,14 @@ require './vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-include "db.php"; // Include database connection
+$setFrom = 'abc@gmail.com';
+$sendaddAddress = 'abc@gmail.com';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = htmlspecialchars($_POST['name']);
     $email = htmlspecialchars($_POST['email']);
     $phone = htmlspecialchars($_POST['phone']);
     $message = htmlspecialchars($_POST['message']);
-
-    // $sql = "INSERT INTO contacts (name, email, phone, message) VALUES ('$name', '$email', '$phone', '$message')";
-
-    // if($conn->query($sql)) {        
 
     $mail = new PHPMailer(true);
     try {
@@ -26,11 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Username = 'smtp.pawan@gmail.com'; // Your Gmail
         $mail->Password = 'fopcdcuoysmtmigf'; // Use App Password (not your Gmail password)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
-
+        $mail->Port = 587;        
         // Recipients
-        $mail->setFrom($setFrom, 'Alaram360');
-        $mail->addAddress($sendaddAddress, 'Alaram360'); // Change this to recipient
+        $mail->setFrom($setFrom, 'Name');
+        $mail->addAddress($sendaddAddress, 'Name'); // Change this to recipient
 
         // Content
         $mail->isHTML(true);
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                               <tr>
                                   <td colspan="4" valign="top" class="image-section" style="border-collapse: collapse;border: 0;margin: 0;padding: 0;-webkit-text-size-adjust: none;color: #555559;font-family: Arial, sans-serif;font-size: 16px;line-height: 26px;background-color: #fff;border-bottom: 4px solid #7d1414">
                                       <a>
-                                          <img class="top-image" src="https://alarm360.ca/assets/images/alarm-360-1.png" style="line-height: 1;width: 100px;" alt="alarm">
+                                          <img class="top-image" src="https://Demo360.com/assets/images/demo-360-1.png" style="line-height: 1;width: 100px;" alt="alarm">
                                       </a>
                                   </td>
                               </tr>
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                           <tr>
                                               <td class="text" style="border-collapse: collapse;border: 0;margin: 0;padding: 0;-webkit-text-size-adjust: none;color: #555559;font-family: Arial, sans-serif;font-size: 16px;line-height: 26px;">
                                                   <div class="mktEditable" id="main_text">
-                                                      <br><br><strong>Hello Alarm360,</strong><br>' . $Mailmessage . '
+                                                      <br><br><strong>Hello Demo360,</strong><br>' . $Mailmessage . '
                                                   </div>
                                               </td>
                                           </tr>
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                               <td class="text" style="border-collapse: collapse;border: 0;margin: 0;padding: 0;-webkit-text-size-adjust: none;color: #555559;font-family: Arial, sans-serif;font-size: 16px;line-height: 24px;">
                                               
                                                   <br><br><strong>Need Help ?</strong><br>
-                                                  Please feel free to contact us at Alarm360								
+                                                  Please feel free to contact us at Demo360								
                                               </td>
                                           </tr>
           
@@ -90,8 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                               <td class="inside-footer" align="center" valign="middle" style="border-collapse: collapse;border: 0;margin: 0;padding: 20px;-webkit-text-size-adjust: none;color: #555559;font-family: Arial, sans-serif;font-size: 12px;line-height: 16px;vertical-align: middle;text-align: center;width: 580px;">
                                                   <div id="address" class="mktEditable">
                                                   <b>© 2025 </b><br>
-                                                      Alarm360 <br>   All Rights Reserved.<br><br>
-                                                      <a style="color: #7d1414;" href="https://www.techplek.com/">Contact Us</a>
+                                                      Demo <br>   All Rights Reserved.<br><br>
+                                                      <a style="color: #7d1414;" href="/">Contact Us</a>
                                                   </div>
                                               </td>
                                           </tr>
@@ -110,8 +110,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Invalid request.";
     }
 
-    // } else {
-    //     echo "Error: " . $conn->error;
-    // }
+  
 }
 ?>
